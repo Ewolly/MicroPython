@@ -1,7 +1,6 @@
 import machine
 import time
 
-# fuck you hunter
 pin = machine.Pin(1, machine.Pin.OUT)
 pin.high()
 pin_on = False
