@@ -14,15 +14,12 @@ s.listen(1)
 
 print('listening on', addr)
 
-
-
 while True:
     cl, addr = s.accept()
     print('client connected from', addr)
     go = time.time()
-    for _ in range(10000):
-        cl.send("{}\n".format(0))
+    for i in range(10000):
+        cl.send("0")
     stop = time.time()
-    cl.send ("{}\n".format(go))
-    cl.send ("{}\n".format(stop))
+    print (stop - go)
     cl.close()
