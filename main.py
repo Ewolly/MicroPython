@@ -17,9 +17,10 @@ print('listening on', addr)
 while True:
     cl, addr = s.accept()
     print('client connected from', addr)
+    packet = cl.recv(1024)
     go = time.time()
     for i in range(10000):
-        cl.send("0")
+        cl.send(packet)
     stop = time.time()
     print (stop - go)
     cl.close()
