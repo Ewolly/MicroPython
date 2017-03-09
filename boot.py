@@ -5,4 +5,4 @@ import gc
 import webrepl
 webrepl.start()
 gc.collect()
-machine.freq(80000000)
+machine.freq(160000000)

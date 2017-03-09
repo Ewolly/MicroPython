@@ -1,11 +1,11 @@
 import socket
 import csv
 from datetime import datetime
-packetfile = open("80MHZ.csv", 'wb')
+packetfile = open("160MHZ.csv", 'wb')
 writer = csv.writer(packetfile)
 
 addr = socket.getaddrinfo("192.168.43.50", 80)[0][-1]
-for x in range(1, 17):
+for x in range(1, 9):
     sent_bytes = bytes("u"*x)
     for i in range(10):
         s = socket.socket()
@@ -33,5 +33,5 @@ for x in range(1, 17):
         #print byte_count
         #print (8*byte_count/(stop-go).total_seconds())/1000
         print "test " + str(i+1) + " is done"
-    print "we re up to byte" + str(x)
+    print "Group test " + str(x) + " completed"
 packetfile.close()
