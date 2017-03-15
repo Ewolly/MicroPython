@@ -1,4 +1,4 @@
-#include <ESP8266WiFi.h>
+ #include <ESP8266WiFi.h>
  
 const char* ssid = "AndroidAP";//type your ssid
 const char* password = "12345678";//type your password
@@ -11,34 +11,15 @@ void setup() {
   delay(10);
  
  
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
+//  pinMode(ledPin, OUTPUT);
+//  digitalWrite(ledPin, LOW);
    
   // Connect to WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
-   
+  
   WiFi.begin(ssid, password);
    
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("");
-  Serial.println("WiFi connected");
-   
   // Start the server
-  server.begin();
-  Serial.println("Server started");
- 
-  // Print the IP address
-  Serial.print("Use this URL to connect: ");
-  Serial.print("http://");
-  Serial.print(WiFi.localIP());
-  Serial.println("/");
-    
+  server.begin();  
 }
  
 void loop() {
@@ -49,19 +30,21 @@ void loop() {
   }
    
   // Wait until the client sends some data
-  Serial.println("new client");
   while(!client.available()){
     delay(1);
   }
-   
+
+  int i = 0; 
   // Read the first line of the request
   String request = client.readStringUntil('\r');
-  Serial.println(request);
+  for (i=0; i < 10000; ++i){
+      client.print(request);             //change this to spaaam
+  }
   client.flush();
-   
+}
   // Match the request
  
-  int value = LOW;
+/*  int value = LOW;
   if (request.indexOf("/LED=ON") != -1) {
     digitalWrite(ledPin, HIGH);
     value = HIGH;
@@ -99,3 +82,4 @@ void loop() {
   Serial.println("");
  
 }
+*/

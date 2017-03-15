@@ -1,13 +1,13 @@
 import socket
 import csv
 from datetime import datetime
-packetfile = open("160MHZ.csv", 'wb')
+packetfile = open("64onwrds.csv", 'wb')
 writer = csv.writer(packetfile)
 
 addr = socket.getaddrinfo("192.168.43.50", 80)[0][-1]
-for x in range(1, 9):
-    sent_bytes = bytes("u"*x)
-    for i in range(10):
+for x in range(64, 256):
+    sent_bytes = bytes("u"*x + '\r')
+    for i in range(3):
         s = socket.socket()
         s.connect(addr)
         s.send(sent_bytes)
@@ -24,7 +24,7 @@ for x in range(1, 9):
                 break
         stop = datetime.now()
         writer.writerow(
-            (len(sent_bytes), 
+            (len(sent_bytes) - 1, 
             (stop-go).total_seconds(),
             byte_count,
             (8*byte_count/(stop-go).total_seconds())/1000))
