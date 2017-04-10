@@ -1,13 +1,13 @@
 import socket
 import csv
 from datetime import datetime
-packetfile = open("64onwrds.csv", 'wb')
+packetfile = open("testnodelay.csv", 'wb')
 writer = csv.writer(packetfile)
 
 addr = socket.getaddrinfo("192.168.43.50", 80)[0][-1]
-for x in range(64, 256):
+for x in range(1500, 1501):
     sent_bytes = bytes("u"*x + '\r')
-    for i in range(3):
+    for i in range(10):
         s = socket.socket()
         s.connect(addr)
         s.send(sent_bytes)
