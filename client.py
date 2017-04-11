@@ -16,6 +16,7 @@ for x in range(1500, 1501):
         while True:
             try:
                 data = s.recv(100)
+                print(data)
             except Exception as e:
                 break 
             if data:
